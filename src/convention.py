@@ -2,10 +2,10 @@
 from __future__ import absolute_import, unicode_literals
 import sys
 import os
-
 #Put lib on path, once Google App Engine does not allow doing it directly
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 
+from webapp2_extras import i18n
 import tmpl
 import logging
 import traceback
@@ -33,13 +33,19 @@ class BaseHandler(webapp2.RequestHandler):
 
     def make_convetion(self):
         kwargs = dict(_extract_values(self, a) for a in self.request.arguments())
-        def write_tmpl(template_name,values={}):
-            return self.response.write(tmpl.render(template_name,values))
+        # locale = self.request.headers.get("Accept-Language", "pt_BR").split(",")[0]
+        # locale = locale.replace("-", "_")
+        locale="pt_BR"
+        i18n.get_i18n().set_locale(locale)
+
+        def write_tmpl(template_name, values={}):
+            return self.response.write(tmpl.render(template_name, values))
+
         convention_params = {"_req": self.request,
                              "_resp": self.response,
                              "_handler": self,
                              "_render": tmpl.render,
-                             "_write_tmpl":write_tmpl}
+                             "_write_tmpl": write_tmpl}
         convention_params["_dependencies"] = convention_params
         try:
             fcn, params = router.to_handler(self.request.path, convention_params, **kwargs)
