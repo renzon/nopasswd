@@ -71,8 +71,9 @@
 
                     </ul>
                     <div class="pull-right">
-                        <form class="form-inline">
+                        <form class="form-inline" action="/login" method="post">
                             <input type="text" class="input-medium"
+                                   name="email"
                                    placeholder="{% trans %}Type your email{% endtrans %}">
                             <button type="submit" class="btn btn-success">{% trans %}
                                 Login {% endtrans %}</button>

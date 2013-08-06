@@ -33,9 +33,8 @@ class BaseHandler(webapp2.RequestHandler):
 
     def make_convetion(self):
         kwargs = dict(_extract_values(self, a) for a in self.request.arguments())
-        # locale = self.request.headers.get("Accept-Language", "pt_BR").split(",")[0]
-        # locale = locale.replace("-", "_")
-        locale="pt_BR"
+        locale = self.request.headers.get("Accept-Language", "en_US").split(",")[0]
+        locale = locale.replace("-", "_")
         i18n.get_i18n().set_locale(locale)
 
         def write_tmpl(template_name, values={}):

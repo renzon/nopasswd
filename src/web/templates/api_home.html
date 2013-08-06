@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block navbar %}{{ select_navbar('API') }}{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="span12">
+            <h1>{% trans %}API Documentation{% endtrans %}</h1>
+
+            <p>
+                {% trans %} This documentation provides the necessary information
+                    for NoPassword integration on websites. It is supposed that people accessing this docs
+                    has the knowledge about HTTP GET and POST calls.{% endtrans %}
+            </p>
+
+            <h2>{% trans %}Table of Contents{% endtrans %}</h2>
+            <ol>
+                <li><a href="#overview">{% trans %}Overview{% endtrans %}</a></li>
+                <li>{% trans %}Registering Sites{% endtrans %}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row" id="overview">
+        <div class="span12">
+        </div>
+    </div>
+{% endblock %}

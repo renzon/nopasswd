@@ -38,6 +38,7 @@ handlers:
   script: convention.app
 
 - url: /([^_]).*
+  secure: always
   script: convention.app
 
 
